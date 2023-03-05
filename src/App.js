@@ -1,6 +1,6 @@
-// import { useState } from "react";
+import { useState } from 'react'
 // import { Routes, Route } from "react-router-dom";
-// import Topbar from "./scenes/global/Topbar";
+import Topbar from './scenes/global/Topbar'
 // import Sidebar from "./scenes/global/Sidebar";
 // import Dashboard from "./scenes/dashboard";
 // import Team from "./scenes/team";
@@ -12,15 +12,26 @@
 // import Pie from "./scenes/pie";
 // import FAQ from "./scenes/faq";
 // import Geography from "./scenes/geography";
-// import { CssBaseline, ThemeProvider } from "@mui/material";
-// import { ColorModeContext, useMode } from "./theme";
+import { CssBaseline, ThemeProvider } from '@mui/material'
+import { ColorModeContext, useMode } from './theme'
 // import Calendar from "./scenes/calendar/calendar";
 
 function App() {
-  //   const [theme, colorMode] = useMode();
-  //   const [isSidebar, setIsSidebar] = useState(true);
+  const [theme, colorMode] = useMode()
+  const [isSidebar, setIsSidebar] = useState(true)
 
   return (
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        {/* reset css to default */}
+        <CssBaseline />
+        <div className='app'>
+          <main className='content'>
+            <Topbar setIsSidebar={setIsSidebar} />
+          </main>
+        </div>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
     // <ColorModeContext.Provider value={colorMode}>
     //   <ThemeProvider theme={theme}>
     //     <CssBaseline />
@@ -45,7 +56,6 @@ function App() {
     //     </div>
     //   </ThemeProvider>
     // </ColorModeContext.Provider>
-    <div>Hello</div>
   )
 }
 
